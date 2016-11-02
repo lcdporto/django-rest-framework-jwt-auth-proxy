@@ -11,7 +11,7 @@ DEFAULTS = {
     'jwt_auth_backend.utils.jwt_encode_handler',
 
     'JWT_DECODE_HANDLER':
-    'jwt_auth_backend.utils.jwt_decode_handler',
+    'drf_jwt_auth_proxy.utils.jwt_decode_handler',
 
     'JWT_PAYLOAD_HANDLER':
     'jwt_auth_backend.utils.jwt_payload_handler',
@@ -26,12 +26,12 @@ DEFAULTS = {
     None,
 
     'JWT_PAYLOAD_GET_USERNAME_HANDLER':
-    'jwt_auth_backend.utils.jwt_get_username_from_payload_handler',
+    'drf_jwt_auth_proxy.utils.jwt_get_username_from_payload_handler',
 
     'JWT_RESPONSE_PAYLOAD_HANDLER':
     'jwt_auth_backend.utils.jwt_response_payload_handler',
 
-    'JWT_SECRET_KEY': settings.SECRET_KEY,
+    'JWT_SECRET_KEY': settings.AUTH_SERVER_KEY,
     'JWT_ALGORITHM': 'HS256',
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
@@ -43,13 +43,12 @@ DEFAULTS = {
     'JWT_ALLOW_REFRESH': False,
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 
     # auth server required settings
     'AUTH_SERVER': settings.AUTH_SERVER,
-    'AUTH_SERVER_USER_DATA': settings.AUTH_SERVER_USER_DATA,
-    'AUTH_SERVER_USER_FIELDS': settings.AUTH_SERVER_USER_FIELDS,
-    'AUTH_SERVER_MEDIA': settings.AUTH_SERVER_MEDIA
+    'AUTH_SERVER_CREATE_USER_CALLBACK': settings.AUTH_SERVER_CREATE_USER_CALLBACK,
+    'AUTH_SERVER_TOKEN_ENDPOINT': 'api-token-auth/'
 
 }
 
